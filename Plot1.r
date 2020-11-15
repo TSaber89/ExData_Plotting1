@@ -4,8 +4,9 @@ my.PowerTable <- read.table("household_power_consumption.txt",header=TRUE,sep=";
 #Convert Date field from character to date
 my.PowerTable$Date <- as.Date(my.PowerTable$Date,format='%d/%m/%Y')
 
-#Subset the working table to include specific dates
-my.PowerTable2<-subset(my.PowerTable,subset=(Date>="2007-01-01" & Date<="2007-02-01"))
+#Extract dates from the the working table
+my.PowerTable2<-my.PowerTable[my.PowerTable$Date>="2007-02-01" & my.PowerTable$Date<="2007-02-02",]
+
 
 #Combine the Date and Time columns into a new column
 my.PowerTable2$combo<-paste(my.PowerTable2$Date,my.PowerTable2$Time,sep=" ")
@@ -19,3 +20,8 @@ hist(my.PowerTable2$Global_active_power,col="red", main = "Global Active Power",
 #Print and save
 dev.copy(png,file="plot1.png",height=500,width=500)
 dev.off()
+
+
+
+
+#my.PowerTable2<-subset(my.PowerTable,subset=(Date>="2007-01-01" & Date<="2007-02-01"))
